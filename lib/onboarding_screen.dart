@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:ui_challenge_plants/constants/app_colors.dart';
+import 'package:ui_challenge_plants/home.dart';
 import 'package:ui_challenge_plants/onboarding_screens/onboarding_screen1.dart';
 import 'package:ui_challenge_plants/onboarding_screens/onboarding_screen2.dart';
 import 'package:ui_challenge_plants/onboarding_screens/onboarding_screen3.dart';
@@ -42,20 +43,19 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 80),
+              padding: const EdgeInsets.only(top: 80),
               child: Align(
                 alignment: Alignment.center,
                 child: SmoothPageIndicator(
                   controller: _controller,
                   count: 3,
-                   effect:  const ExpandingDotsEffect(  
-      spacing:  8.0,  
-      dotWidth:  8.0,  
-      dotHeight:  8.0,  
-      strokeWidth:  1.5,  
-      dotColor:  Colors.grey,  
-      activeDotColor:  AppColors.green
-   ),  
+                  effect: const ExpandingDotsEffect(
+                      spacing: 8.0,
+                      dotWidth: 8.0,
+                      dotHeight: 8.0,
+                      strokeWidth: 1.5,
+                      dotColor: Colors.grey,
+                      activeDotColor: AppColors.green),
                 ),
               ),
             ),
@@ -63,9 +63,12 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
               alignment: Alignment.bottomCenter,
               child: InkWell(
                 onTap: () {
-                  _controller.nextPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeIn);
+                  isLastPage
+                      ? Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => const Home()))
+                      : _controller.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn);
                 },
                 child: Container(
                   height: 55,
@@ -91,7 +94,9 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                     alignment: Alignment.topRight,
                     child: TextButton(
                       onPressed: () {
-                        _controller.jumpToPage(2);
+                        _controller.animateToPage(2,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeIn);
                       },
                       child: const Text(
                         "Skip",
