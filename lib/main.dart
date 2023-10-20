@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ui_challenge_plants/onboarding_screen.dart';
+import 'package:ui_challenge_plants/onboarding_screens/onboarding_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

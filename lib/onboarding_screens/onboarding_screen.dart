@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:ui_challenge_plants/constants/app_colors.dart';
-import 'package:ui_challenge_plants/home.dart';
+import 'package:ui_challenge_plants/screens/home.dart';
 import 'package:ui_challenge_plants/onboarding_screens/onboarding_screen1.dart';
 import 'package:ui_challenge_plants/onboarding_screens/onboarding_screen2.dart';
 import 'package:ui_challenge_plants/onboarding_screens/onboarding_screen3.dart';
@@ -65,7 +65,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                 onTap: () {
                   isLastPage
                       ? Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => const Home()))
+                          MaterialPageRoute(builder: (context) =>  Home()))
                       : _controller.nextPage(
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeIn);
